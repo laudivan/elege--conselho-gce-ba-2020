@@ -1,0 +1,454 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Votação para o Conselho Fiscal do GCE</title>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+
+        <style>
+          .card {
+            width: 14rem;
+            margin-bottom: 2rem;
+            text-align: center;
+          }
+          .container {
+            margin-top: 5rem;
+          }
+
+          .material-icons.activated {
+            color: #28a745
+          }
+
+          .material-icons.deactivated {
+            color: #007bff
+          }
+
+          .material-icons.disabled {
+            color: #6c757d
+          }
+
+          .votou {
+            background-color: #dfdfdf;
+          }
+
+          .naovotou {
+            background-color: #fff;
+          }
+        </style>
+    </head>
+    
+    <body style="background: #fff;">
+      <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
+        <a class="navbar-brand" href="#">ADM</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <div>
+            <ul class="navbar-nav mr-auto list-group" id="list-tab" role="tablist">
+              <li class="nav-item">
+                <a class="nav-link" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Candidatos</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="list-voters-list" data-toggle="list" href="#list-voters" role="tab" aria-controls="voters">Votantes</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="list-result-list" data-toggle="list" href="#list-result" role="tab" aria-controls="result">Resultado</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" id="list-conf" data-toggle="list" href="#conf" role="tab" aria-controls="conf">Configurações</a>
+              </li>
+            </ul>
+
+          </div>
+        </div>
+      </nav>
+
+
+
+
+<!--       <div class="list-group  list-group-horizontal-lg" id="list-tab" role="tablist">
+        <a class="list-group-item list-group-item-action active" id="list-home-list" data-toggle="list" href="#list-home" role="tab" aria-controls="home">Candidatos</a>
+        <a class="list-group-item list-group-item-action" id="list-voters-list" data-toggle="list" href="#list-voters" role="tab" aria-controls="voters">Votantes</a>
+        <a class="list-group-item list-group-item-action" id="list-result-list" data-toggle="list" href="#list-result" role="tab" aria-controls="result">Resultado</a>
+      </div> -->
+
+      <div class="tab-content" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="list-home" role="tabpanel" aria-labelledby="list-home-list">
+          <div class="container">
+            <!--
+            <button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#addCand">Adicionar candidato</button>
+            <button type="button" class="btn btn-lg btn-primary" onclick="loadCand()"><i class="material-icons md-48 md-light">refresh</i></button>
+            -->
+            <table style="margin-top: 2rem" class="table">
+              <thead>
+                <tr>
+                  <th scope="col">Id</th>
+                  <th scope="col">Canditato</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="tab-pane fade" id="list-voters" role="tabpanel" aria-labelledby="list-voters-list">
+          <div class="container">
+            <!--
+            <button type="button" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#addVotante">Adicionar Votante</button>
+            <button type="button" class="btn btn-lg btn-primary" onclick="loadVoters()"><i class="material-icons md-48 md-light">refresh</i></button>
+            -->
+            Mostra apenas quem votou: <br><a id="conf-votante" onclick="setConf('votante')" class="card-link"><i class="material-icons md-light" style="font-size: 5rem">toggle_off</i></a>
+            <table style="margin-top: 2rem" class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Id</th>
+                    <th scope="col">Votante</th>
+                    <!--<th scope="col">Email</th>-->
+                    <!--<th scope="col">Código</th>-->
+                    <!--<th></th>-->
+                  </tr>
+                </thead>
+                <tbody>
+                </tbody>
+              </table>
+          </div>
+        </div>
+
+
+        <div class="tab-pane fade" id="list-result" role="tabpanel" aria-labelledby="list-result-list">
+          <div class="container">
+            <button type="button" class="btn btn-lg btn-primary" onclick="loadResult()"><i class="material-icons md-48 md-light">refresh</i></button>
+            <table class="table"  style="margin-top: 2rem">
+              <thead>
+                <tr>
+                  <th scope="col">Canditato</th>
+                  <th scope="col" style="text-align: right">Votos</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+              <tfoot>
+                <tr>
+                  <td class="alert alert-dark" style="text-align: center; font-weight: 500;" colspan="3">Já votaram <span id="javotaram"></span> pessoas</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+        </div>
+
+        <div class="tab-pane fade" id="conf" role="tabpanel" aria-labelledby="list-conf">
+          <div class="container">
+            <h2>Habilita e módulos</h2>
+            <div class="row">
+              <div class="col-sm-3">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Iniciar votação</h5>
+                    <a id="conf-iniciar" onclick="setConf('iniciar')" class="card-link"><i class="material-icons md-light" style="font-size: 5rem">toggle_off</i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Terminar votação</h5>
+                    <a id="conf-finalizar" onclick="setConf('finalizar')" class="card-link"><i class="material-icons md-light" style="font-size: 5rem">toggle_off</i></a>
+                  </div>
+                </div>
+              </div>
+              <div class="col-sm-3">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title">Mostrar resultados</h5>
+                    <a id="conf-resultados" onclick="setConf('resultados')" class="card-link"><i class="material-icons md-light" style="font-size: 5rem">toggle_off</i></a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+            
+      </div>
+
+      <div class="modal fade" id="addCand" tabindex="-1" role="dialog" aria-labelledby="addCandLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="addCandLabel">Adicionar candidato</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form id="cadastrar">
+                <div class="form-group row">
+                    <label for="idcand" class="col-sm-2 col-form-label">Id DeMolay</label>
+                    <div class="col-sm-10">
+                      <input type="number" class="form-control form-control-lg" id="idcand" required>
+                    </div>
+                  </div>
+                  <div class="form-group row">
+                    <label for="candidato" class="col-sm-2 col-form-label">Nome do candidato</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control form-control-lg" id="candidato" required>
+                    </div>
+                  </div>
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-lg btn-warning" data-dismiss="modal">Cancelar</button>
+              <button type="button" class="btn btn-lg btn-success btnconfirmar" data-dismiss="modal">Confirmar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+        
+      <div class="modal fade" id="addVotante" tabindex="-1" role="dialog" aria-labelledby="addVotanteLabel" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered"><div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="addVotanteLabel">Adicionar votante</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form id="cadastrar">
+                  <div class="form-group row">
+                      <label for="id" class="col-sm-2 col-form-label">Id DeMolay</label>
+                      <div class="col-sm-10">
+                        <input type="number" class="form-control form-control-lg" id="id" required>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="nome" class="col-sm-2 col-form-label">Nome</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control form-control-lg" id="nome" required>
+                      </div>
+                    </div>
+                    <div class="form-group row">
+                      <label for="email" class="col-sm-2 col-form-label">Email</label>
+                      <div class="col-sm-10">
+                        <input type="email" class="form-control form-control-lg" id="email">
+                      </div>
+                    </div>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-lg btn-warning" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-lg btn-success btnconfirmar" data-dismiss="modal">Confirmar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      
+        <script src="/__/firebase/7.16.1/firebase-app.js"></script>
+        
+        <script src="/__/firebase/7.16.1/firebase-analytics.js"></script>
+        <script src="/__/firebase/7.15.5/firebase-firestore.js"></script>
+        
+        <!-- Initialize Firebase -->
+        <script src="/__/firebase/init.js"></script>
+
+
+        <script>
+          function setConf (conf) {
+            let idconf = `#conf-${conf}`
+            let confval = ! ($(idconf).attr('val') === 'true')
+            
+            $(idconf).attr('val', confval)
+            $(`${idconf} i`).empty()
+            $(`${idconf} i`).removeClass('activated').removeClass('deactivated')
+            $(`${idconf} i`).addClass(confval ? 'activated' : 'deactivated')
+            $(`${idconf} i`).append(confval ? 'toggle_on' : 'toggle_off')
+
+            if (conf === 'votante') {
+              if ( $(idconf).attr('val') === 'true' ) {
+                $('.naovotou').hide()
+              } else {
+                $('.naovotou').show()
+              }
+              return;
+            }
+
+            let config = { 
+              iniciar: $('#conf-iniciar').attr('val') === 'true', 
+              finalizar: $('#conf-finalizar').attr('val') === 'true', 
+              resultados: $('#conf-resultados').attr('val') === 'true'
+            }
+
+            firebase.firestore().collection('conf').doc('geral').set(config)
+
+            loadConf()
+          }
+
+          function loadConf () {
+            firebase.firestore().collection('conf').doc('geral').get().then(doc => {
+                conf = doc.data()
+
+                $('#conf i').empty()
+                $('#conf i').removeClass('activated').removeClass('deactivated')
+
+                $('#conf-iniciar i').append(conf.iniciar ? 'toggle_on' : 'toggle_off')
+                $('#conf-iniciar i').addClass(conf.iniciar ? 'activated' : 'deactivated')
+                $('#conf-iniciar').attr('val', conf.iniciar)
+
+                $('#conf-finalizar i').append(conf.finalizar ? 'toggle_on' : 'toggle_off')
+                $('#conf-finalizar i').addClass(conf.finalizar ? 'activated' : 'deactivated')
+                $('#conf-finalizar').attr('val', conf.finalizar)
+
+                $('#conf-resultados i').append(conf.resultados ? 'toggle_on' : 'toggle_off')
+                $('#conf-resultados i').addClass(conf.resultados ? 'activated' : 'deactivated')
+                $('#conf-resultados').attr('val', conf.resultados)
+            })
+          }
+
+          function loadResult () {
+            let _result = []
+            
+
+            function addResult (candidato) {
+              _result.push(candidato)
+              
+              _resultTable = _result.sort( (a,b) => b.votos - a.votos )
+                .map( c => `<tr><td>${c.nome} (${c.id})</td><td style="text-align: right">${c.votos}</td></tr>` )
+                .join('')
+              
+              $('#list-result table tbody').empty()
+              $('#list-result table tbody').append(_resultTable)
+            }
+
+            function _getVotos (candidato) {
+              firebase.firestore().collection('votos').where('id', '==', candidato.id)
+              .get().then(qs => addResult({id:candidato.id, nome: candidato.nome, votos: qs.size}))
+            }
+            
+            firebase.firestore().collection('candidatos')
+            .get().then( qs => qs.forEach( doc => _getVotos( doc.data() ) ))
+
+            firebase.firestore().collection('votantes').where('votou', '==', true)
+              .get().then(qs => $('#javotaram').html(qs.size))
+          }
+
+          function loadCand () {
+            firebase.firestore().collection('candidatos').get().then(qs => {
+              $('#list-home tbody').empty()
+
+                qs.forEach( doc => {
+                    $('#list-home tbody').append(
+                      `<tr><td>${doc.data().id}</td><td>${doc.data().nome}</td>` + 
+                        `<td><a onclick="removeDoc('candidatos', '${doc.id}')"><i class="material-icons md-light">delete</i></a></td></tr>`)
+                })
+            })          
+          }
+
+          function loadVoters () {
+            firebase.firestore().collection('votantes').get().then(qs => {
+              $('#list-voters tbody').empty()
+
+                qs.forEach( doc => {
+                    let _class = doc.data().votou !== undefined ? 'votou' : 'naovotou'
+
+                    $('#list-voters tbody').append(
+                      `<tr class="${_class}"><td>${doc.data().id}</td><td>${doc.data().nome}</td>`
+                      //+ `<td>${doc.id}</td><td><a onclick="removeDoc ('votantes', '${doc.id}')"><i class="material-icons md-light">delete</i></a></td>`
+                      + '</tr>'
+                    )
+                })
+            })
+          }
+
+          loadCand()
+          loadVoters()
+          loadResult()
+          loadConf()
+/*
+          setInterval(function () {
+            // loadCand()
+            // loadVoters()
+            loadResult()
+            loadConf()
+          }, 2500)
+*/
+          function removeDoc (col, doc) {
+            firebase.firestore().collection(col).doc(doc).delete().then(function() {
+                if (col == 'candidatos') {
+                  loadCand()
+                } else {
+                  loadVoters()
+                }
+            }).catch(function(error) {
+                console.error("Error removing document: ", error);
+            });
+          }
+
+          
+          $('#addVotante .btnconfirmar').click(function () {
+            cadastro = { id: Number($('#id').val()), nome: $('#nome').val(), email: $('#email').val() }
+            firebase.firestore().collection('votantes').add(cadastro)
+            loadVoters()
+          })
+          
+          $('#addCand .btnconfirmar').click(function () {
+            cadastro = { id: Number($('#idcand').val()), nome: $('#candidato').val() }
+            firebase.firestore().collection('candidatos').add(cadastro)
+            loadCand()
+          })
+
+          function corrigirID (col) {
+            function _corrigir (ref, doc) {
+              console.log(doc)
+              firebase.firestore().collection(col).doc(ref).update(doc)
+            }
+
+            firebase.firestore().collection(col).get().then(qs => {
+                qs.forEach( doc => {
+                    let newdoc = {}
+
+                    newdoc.id = Number(doc.data().id)
+                    newdoc.nome = doc.data().nome
+
+                    if (doc.data().email !== undefined) {
+                      newdoc.email = doc.data().email
+                    }
+
+                    _corrigir(doc.id, newdoc)
+                })
+            })
+          }
+
+          function corrigirVoto () {
+            firebase.firestore().collection('votos').get().then(qs => {
+                qs.forEach( doc => {
+                    let newdoc = {
+                        id: Number(doc.data().id),
+                        nome: doc.data().nome,
+                        hora: doc.data().hora,
+                        ref: doc.data().ref
+                    }
+
+                    firebase.firestore().collection('votos').doc(doc.id).update(newdoc)
+                    console.log(newdoc)
+                })
+            })
+          }
+
+          //corrigirVoto()
+
+          //corrigirID('votantes')
+          
+          </script>
+    </body>
+</html>
